@@ -1,0 +1,43 @@
+<div class="container">
+
+  <div class="form">
+    <form [formGroup]="formGroup" class="login-form" (ngSubmit)="onSubmit()">
+      <div class="login-form__title">
+        <h1 *ngIf="registered">Log in</h1>
+        <h1 *ngIf="!registered">Create Account</h1>
+      </div>
+      <div class="form__warning">
+        <mat-card *ngIf="loginAgain$ | async">
+          <mat-card-content>
+            Please login to your account to get to the products page
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <app-text-input [value]="formGroup.value.email" [label]="'Email'" formControlName="email"></app-text-input>
+
+      <hr *ngIf="!registered">
+      <app-text-input *ngIf="!registered" [value]="formGroup.value.name" [label]="'Name'"
+        formControlName="name"></app-text-input>
+
+      <hr>
+      <app-text-input [value]="formGroup.value.password" [label]="'Password'" [type]="'password'"
+        formControlName="password"></app-text-input>
+      <mat-error *ngIf="formGroup.hasError('minLength', 'password')">
+        Password must not be shorter then <strong>6</strong> symbols
+      </mat-error>
+
+      <div class="login-form__input-control">
+        <button *ngIf="registered" mat-raised-button color="primary" [disabled]="formGroup.invalid || submitted"
+          class="login-form__submit">Log in</button>
+        <button *ngIf="!registered" mat-raised-button color="primary" [disabled]="formGroup.invalid || submitted"
+          class="login-form__submit">Sing Up</button>
+      </div>
+      <div class="toggle">
+        <span *ngIf="registered" class="text">If you haven't account please</span>
+        <button *ngIf="registered" mat-raised-button (click)="changeRegistered(false)">Sing Up</button>
+        <span *ngIf="!registered" class="text">If you have account please</span>
+        <button *ngIf="!registered" mat-raised-button (click)="changeRegistered(true)">Sign In</button>
+      </div>
+    </form>
+  </div>
+</div>
