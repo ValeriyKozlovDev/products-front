@@ -6,7 +6,7 @@ import { Environment } from "./interface";
 
 export const environment: Environment = {
   production: false,
-  baseUrl: 'http://localhost:3000/api'
+  baseUrl: 'https://products-back-1.onrender.com/api'
 };
 
 /*
