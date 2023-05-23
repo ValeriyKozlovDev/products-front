@@ -31,14 +31,18 @@ export class EditComponent implements OnInit {
       this.editForm = new FormGroup({
         name: new FormControl(this.product.name, [Validators.required]),
         description: new FormControl(this.product.description),
+        fullDescription: new FormControl(this.product.description),
         price: new FormControl(this.product.price, [Validators.required]),
+        year: new FormControl(this.product.price, [Validators.required]),
         image: new FormControl(this.product.image),
       });
     } else {
       this.editForm = new FormGroup({
         name: new FormControl('', [Validators.required]),
         description: new FormControl(''),
+        fullDescription: new FormControl(''),
         price: new FormControl('', [Validators.required]),
+        year: new FormControl('', [Validators.required]),
         image: new FormControl(''),
       });
     }
@@ -53,7 +57,9 @@ export class EditComponent implements OnInit {
         ...this.product,
         name: this.editForm.value.name,
         description: this.editForm.value.description,
+        fullDescription: this.editForm.value.fullDescription,
         price: this.editForm.value.price,
+        year: this.editForm.value.year,
         image: this.editForm.value.image,
       }
 
@@ -61,8 +67,10 @@ export class EditComponent implements OnInit {
     } else {
       const newProduct: IProduct = {
         name: this.editForm.value.name,
+        fullDescription: this.editForm.value.fullDescription,
         description: this.editForm.value.description,
         price: this.editForm.value.price,
+        year: this.editForm.value.year,
         image: this.editForm.value.image,
       }
 

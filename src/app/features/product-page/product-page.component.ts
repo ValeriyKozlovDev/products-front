@@ -24,7 +24,7 @@ import { getFullProduct } from '../products/store/products.actions';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductPageComponent implements OnInit {
-  public product$: Observable<IProduct> = this._store.select(ProductsFeature.selectProduct)
+  public product$: Observable<IProduct | null> = this._store.select(ProductsFeature.selectProduct)
   constructor(
     private _store: Store,
     private _router: Router,

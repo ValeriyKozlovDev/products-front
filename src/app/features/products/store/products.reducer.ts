@@ -26,13 +26,7 @@ export const products = 'products';
 export const productsInitialState: IProductsState = {
   isLoading: false,
   products: [],
-  product: {
-    name: '',
-    description: '',
-    image: '',
-    id: 0,
-    price: 0
-  },
+  product: null,
   error: null,
 };
 
@@ -40,10 +34,6 @@ export const ProductsFeature = createFeature({
   name: products,
   reducer: createReducer(
     productsInitialState,
-    // on(getFullProduct, (state: IProductsState, { id }) => ({
-    //   ...state,
-    //   product: (state.products.find(product => product.id == id)) as IProduct
-    // })),
     on(getFullProduct, (state: IProductsState) => ({
       ...state,
       error: null,
@@ -115,7 +105,7 @@ export const ProductsFeature = createFeature({
     })),
     on(deleteProductSuccess, (state: IProductsState, { response }) => ({
       ...state,
-      products: state.products.filter((product) => product.id != state.product.id),
+      products: state.products.filter((product) => product.id != state.product!.id),
       isLoading: false,
     })),
     on(deleteProductFailed, (state: IProductsState, { error }) => ({
@@ -126,13 +116,7 @@ export const ProductsFeature = createFeature({
     on(resetProducts, (state: IProductsState) => ({
       ...state,
       products: [],
-      product: {
-        name: '',
-        description: '',
-        image: '',
-        id: 0,
-        price: 0
-      }
+      product: null,
     })),
   ),
 });
