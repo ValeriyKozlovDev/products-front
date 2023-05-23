@@ -3,6 +3,8 @@ export interface IProduct {
   name: string;
   price: number;
   description?: string;
+  fullDescription?: string;
+  year?: number;
   image?: string;
   createdAt?: string;
   updatedAt?: string;
