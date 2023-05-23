@@ -19,6 +19,11 @@ export class ProductsService {
     return this._http.get<IProduct[]>(url);
   }
 
+  public getProduct(id: number): Observable<IProduct> {
+    const url = `${environment.baseUrl}/products/${id}`;
+    return this._http.get<IProduct>(url);
+  }
+
   public changeProductData(product: IProduct): Observable<IProduct> {
     const url = `${environment.baseUrl}/products/${product.id}`;
     return this._http.put<IProduct>(url, product);

@@ -31,7 +31,8 @@ export class ProductPageComponent implements OnInit {
   ) { }
 
   public ngOnInit() {
-    this._store.dispatch(getFullProduct({ id: +(this._router.url.split('/'))[2] }))
+    let route = this._router.url.split('/')
+    this._store.dispatch(getFullProduct({ id: +route[route.length - 1] }))
   }
 }
 

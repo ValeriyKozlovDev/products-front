@@ -17,7 +17,10 @@ import {
   createProductSuccess,
   deleteProduct,
   deleteProductSuccess,
-  deleteProductFailed
+  deleteProductFailed,
+  getFullProduct,
+  getFullProductSuccess,
+  getFullProductFailed
 } from './products.actions';
 
 export const getAllProducts$ = createEffect(
@@ -36,6 +39,30 @@ export const getAllProducts$ = createEffect(
           }),
           catchError((errorRes: HttpErrorResponse) =>
             of(getAllProductsFailed({ error: errorRes.error?.errors })),
+          ),
+        ),
+      )
+    ),
+
+  { functional: true },
+)
+
+export const getProduct$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    productsService: ProductsService = inject(ProductsService),
+  ) =>
+    actions$.pipe(
+      ofType(getFullProduct),
+      mergeMap(({ id }) =>
+        productsService.getProduct(id).pipe(
+          map((response) => {
+            return getFullProductSuccess({
+              response,
+            });
+          }),
+          catchError((errorRes: HttpErrorResponse) =>
+            of(getFullProductFailed({ error: errorRes.error?.errors })),
           ),
         ),
       )

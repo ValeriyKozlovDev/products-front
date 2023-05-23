@@ -15,6 +15,8 @@ import {
   getAllProductsFailed,
   getAllProductsSuccess,
   getFullProduct,
+  getFullProductFailed,
+  getFullProductSuccess,
   resetProducts,
 } from './products.actions';
 import { IProduct } from '../interfaces/products.interfaces';
@@ -38,9 +40,24 @@ export const ProductsFeature = createFeature({
   name: products,
   reducer: createReducer(
     productsInitialState,
-    on(getFullProduct, (state: IProductsState, { id }) => ({
+    // on(getFullProduct, (state: IProductsState, { id }) => ({
+    //   ...state,
+    //   product: (state.products.find(product => product.id == id)) as IProduct
+    // })),
+    on(getFullProduct, (state: IProductsState) => ({
       ...state,
-      product: (state.products.find(product => product.id == id)) as IProduct
+      error: null,
+      isLoading: true,
+    })),
+    on(getFullProductSuccess, (state: IProductsState, { response }) => ({
+      ...state,
+      product: response,
+      isLoading: false,
+    })),
+    on(getFullProductFailed, (state: IProductsState, { error }) => ({
+      ...state,
+      error: error,
+      isLoading: false,
     })),
     on(getAllProducts, (state: IProductsState) => ({
       ...state,
