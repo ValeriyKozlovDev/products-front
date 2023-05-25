@@ -4,13 +4,12 @@
       Add new product
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
-
-    <mat-grid-list cols="4" rowHeight="1:1">
-      <mat-grid-tile *ngFor="let product of products">
+    <div class="row">
+      <div class="col-md-3 product" *ngFor="let product of products">
         <app-product [product]="product"></app-product>
         <mat-icon (click)="deleteProduct(product.id!)">delete</mat-icon>
-      </mat-grid-tile>
-    </mat-grid-list>
+      </div>
+    </div>
   </ng-container>
 </div>
 <ng-template #noProducts>
