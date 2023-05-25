@@ -13,3 +13,7 @@ export interface IProduct {
 export interface IErrors {
   key: string[];
 }
+
+export interface IPhoto {
+  fileName: string
+}

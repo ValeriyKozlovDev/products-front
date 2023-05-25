@@ -1,9 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit, Provider } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Provider, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { AuthFeature } from './store/auth.reducer';
 import { IUser } from './store/interfaces';
@@ -38,17 +39,14 @@ const INTERCEPTOR_PROVIDER: Provider = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthComponent implements OnInit {
+  private _store = inject(Store)
 
-  public registered = true
+  public registered: boolean = true
   public formGroup!: FormGroup;
-  public submitted = false
-  public loading$ = this._store.select(AuthFeature.selectLoading)
-  public loginAgain$ = this._store.select(AuthFeature.selectLoginAgain)
+  public submitted: boolean = false
 
-  constructor(
-    public auth: AuthService,
-    private _store: Store,
-  ) { }
+  public isLoading$: Observable<boolean> = this._store.select(AuthFeature.selectLoading)
+  public loginAgain$: Observable<boolean> = this._store.select(AuthFeature.selectLoginAgain)
 
   public ngOnInit(): void {
     this.formInit()
@@ -68,7 +66,7 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  public onSubmit() {
+  public onSubmit(): void {
     if (this.formGroup.invalid || (!this.registered && !this.formGroup.value.name.length)) {
       return
     }

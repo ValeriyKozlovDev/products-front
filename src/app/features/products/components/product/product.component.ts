@@ -14,7 +14,7 @@ import { environment } from '../../../../../environments/environment';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent {
-  @Input() product!: IProduct
   public url: string = environment.baseUrl.slice(0, environment.baseUrl.length - 3)
 
+  @Input() product!: IProduct
 }

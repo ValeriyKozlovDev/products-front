@@ -4,13 +4,15 @@
       Add new product
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
-
-    <mat-grid-list cols="4" rowHeight="1:1">
-      <mat-grid-tile *ngFor="let product of products">
-        <app-product [product]="product"></app-product>
-        <mat-icon (click)="deleteProduct(product.id!)">delete</mat-icon>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <div class="row">
+      <div class="col-md-3" *ngFor="let product of products">
+        <div class="product">
+          <app-product [product]="product"></app-product>
+          <mat-icon (click)="deleteProduct(product.id!)">delete</mat-icon>
+        </div>
+        <div class="margin"></div>
+      </div>
+    </div>
   </ng-container>
 </div>
 <ng-template #noProducts>
@@ -26,3 +28,4 @@
 <mat-menu #add="matMenu">
   <app-edit (click)="$event.stopPropagation()"></app-edit>
 </mat-menu>
+<app-loader *ngIf="isLoading$ | async"></app-loader>

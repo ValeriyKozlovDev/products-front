@@ -19,3 +19,17 @@
     border-bottom-right-radius: 0;
   }
 }
+
+.product {
+  display: flex;
+  justify-content: center;
+  padding: 30px 10px 30px 30px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+
+  background-color: azure;
+}
+
+.margin {
+  width: 10px;
+}
