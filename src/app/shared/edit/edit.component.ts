@@ -98,7 +98,7 @@ export class EditComponent implements OnInit {
         fullDescription: this.editForm.value.fullDescription,
         price: this.editForm.value.price,
         year: this.editForm.value.year,
-        image: this.photo
+        image: this.photo ? this.photo : this.product.image
       }
       this._store.dispatch(changeProductData({ data: newProduct }))
     } else {
@@ -112,6 +112,9 @@ export class EditComponent implements OnInit {
         image: this.photo
       }
       this._store.dispatch(createProduct({ data: newProduct }))
+      this.editForm.reset()
+      this.selectedFile = null
+      this.imagePreview = ''
     }
   }
 }
