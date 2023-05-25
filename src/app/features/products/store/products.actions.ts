@@ -2,6 +2,7 @@ import { createAction, props } from '@ngrx/store';
 
 import { ProfileActions } from './products.action.enum';
 import { IProduct, IErrors } from '../interfaces/products.interfaces';
+import { IPhoto } from '../services/products.service';
 
 export const changeProductData = createAction(
   ProfileActions.CHANGE_PRODUCT_DATA,
@@ -79,5 +80,20 @@ export const getFullProductSuccess = createAction(
 
 export const getFullProductFailed = createAction(
   ProfileActions.GET_FULL_PRODUCT_FAILED,
+  props<{ error: IErrors }>(),
+);
+
+export const uploadPhoto = createAction(
+  ProfileActions.UPLOAD_PHOTO,
+  props<{ image: FormData }>(),
+);
+
+export const uploadPhotoSuccess = createAction(
+  ProfileActions.UPLOAD_PHOTO_SUCCESS,
+  props<{ response: IPhoto }>(),
+);
+
+export const uploadPhotoFailed = createAction(
+  ProfileActions.UPLOAD_PHOTO_FAILED,
   props<{ error: IErrors }>(),
 );

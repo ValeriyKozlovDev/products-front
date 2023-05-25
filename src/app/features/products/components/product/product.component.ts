@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../../../../shared/shared.module';
 import { IProduct } from '../../interfaces/products.interfaces';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   standalone: true,
@@ -14,5 +15,6 @@ import { IProduct } from '../../interfaces/products.interfaces';
 })
 export class ProductComponent {
   @Input() product!: IProduct
+  public url: string = environment.baseUrl.slice(0, environment.baseUrl.length - 3)
 
 }

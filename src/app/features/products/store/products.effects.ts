@@ -20,7 +20,10 @@ import {
   deleteProductFailed,
   getFullProduct,
   getFullProductSuccess,
-  getFullProductFailed
+  getFullProductFailed,
+  uploadPhoto,
+  uploadPhotoFailed,
+  uploadPhotoSuccess
 } from './products.actions';
 
 export const getAllProducts$ = createEffect(
@@ -87,6 +90,29 @@ export const createProduct$ = createEffect(
           }),
           catchError((errorRes: HttpErrorResponse) =>
             of(createProductFailed({ error: errorRes.error?.errors })),
+          ),
+        ),
+      )
+    ),
+
+  { functional: true },
+)
+export const uploadPhoto$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    productsService: ProductsService = inject(ProductsService),
+  ) =>
+    actions$.pipe(
+      ofType(uploadPhoto),
+      mergeMap(({ image }) =>
+        productsService.uploadPhoto(image).pipe(
+          map((response) => {
+            return uploadPhotoSuccess({
+              response,
+            });
+          }),
+          catchError((errorRes: HttpErrorResponse) =>
+            of(uploadPhotoFailed({ error: errorRes.error?.errors })),
           ),
         ),
       )

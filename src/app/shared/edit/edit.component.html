@@ -2,7 +2,17 @@
   <app-text-input [value]="editForm.value.name" [label]="'Name'" formControlName="name"></app-text-input>
   <app-text-input [value]="editForm.value.description" [label]="'Short description'"
     formControlName="description"></app-text-input>
-  <app-text-input [value]="editForm.value.image" [label]="'Image'" formControlName="image"></app-text-input>
+  <div class="photo">
+    <img *ngIf="imagePreview" (click)="input.click()" [src]="imagePreview" alt="" class="preview">
+    <img *ngIf="product && !imagePreview" (click)="input.click()" [src]="url + product.image" alt="" class="preview">
+
+    <button mat-button *ngIf="!imagePreview && !product" (click)="input.click()">
+      Upload image
+    </button>
+
+    <input #input class="file-input" type="file" (change)="onFileChanged($event)">
+
+  </div>
   <app-text-input [value]="editForm.value.price" [label]="'Price'" formControlName="price"></app-text-input>
   <app-text-input [value]="editForm.value.fullDescription" [label]="'Full description'"
     formControlName="fullDescription"></app-text-input>

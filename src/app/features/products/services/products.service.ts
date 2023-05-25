@@ -4,12 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { IProduct } from '../interfaces/products.interfaces';
-import { environment } from 'src/environments/environment';
-
+import { environment } from '../../../../environments/environment';
+export interface IPhoto {
+  fileName: string
+}
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class ProductsService {
   constructor(private _http: HttpClient) { }
 
@@ -37,5 +40,10 @@ export class ProductsService {
   public deleteProduct(id: number): Observable<string> {
     const url = `${environment.baseUrl}/products/${id}`;
     return this._http.delete<string>(url);
+  }
+
+  public uploadPhoto(image: FormData): Observable<any> {
+    const url = `${environment.baseUrl}/products/image`;
+    return this._http.post<any>(url, image)
   }
 }

@@ -10,6 +10,7 @@ import { EditComponent } from '../../shared/edit/edit.component';
 import { IProduct } from '../products/interfaces/products.interfaces';
 import { ProductsFeature } from '../products/store/products.reducer';
 import { getFullProduct } from '../products/store/products.actions';
+import { environment } from '../../../environments/environment';
 
 @Component({
   standalone: true,
@@ -25,6 +26,7 @@ import { getFullProduct } from '../products/store/products.actions';
 })
 export class ProductPageComponent implements OnInit {
   public product$: Observable<IProduct | null> = this._store.select(ProductsFeature.selectProduct)
+  public url: string = environment.baseUrl.slice(0, environment.baseUrl.length - 3)
   constructor(
     private _store: Store,
     private _router: Router,

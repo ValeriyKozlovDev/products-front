@@ -10,7 +10,6 @@ import { IUser } from './store/interfaces';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { login, register } from './store/auth.actions';
 import { AuthService } from './services/auth.service';
-import { DestroyDirective } from '../shared/directives/destroy.directive';
 import { SharedModule } from '../shared/shared.module';
 import { TextInputComponent } from '../shared/text-input/text-input.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -37,7 +36,6 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AuthService
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  hostDirectives: [DestroyDirective],
 })
 export class AuthComponent implements OnInit {
 
