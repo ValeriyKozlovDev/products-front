@@ -5,9 +5,6 @@ import { Observable } from 'rxjs';
 
 import { IProduct } from '../interfaces/products.interfaces';
 import { environment } from '../../../../environments/environment';
-export interface IPhoto {
-  fileName: string
-}
 
 @Injectable({
   providedIn: 'root',

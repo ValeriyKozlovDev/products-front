@@ -1,8 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { ProfileActions } from './products.action.enum';
-import { IProduct, IErrors } from '../interfaces/products.interfaces';
-import { IPhoto } from '../services/products.service';
+import { IProduct, IErrors, IPhoto } from '../interfaces/products.interfaces';
 
 export const changeProductData = createAction(
   ProfileActions.CHANGE_PRODUCT_DATA,

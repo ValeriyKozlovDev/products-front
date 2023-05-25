@@ -1,7 +1,7 @@
 <ng-container *ngIf="product$ | async as product">
 
   <div class="container">
-    <button mat-button [matMenuTriggerFor]="edit">
+    <button mat-button [matMenuTriggerFor]="edit" #clickMenuTrigger="matMenuTrigger">
       Edit product
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
@@ -30,7 +30,7 @@
     </div>
   </div>
   <mat-menu #edit="matMenu">
-    <app-edit (click)="$event.stopPropagation()" [product]="product"></app-edit>
+    <app-edit (click)="$event.stopPropagation()" [product]="product" (closeMenu)="closeMenu()"></app-edit>
   </mat-menu>
 </ng-container>
 <app-loader *ngIf="isLoading$ | async"></app-loader>
