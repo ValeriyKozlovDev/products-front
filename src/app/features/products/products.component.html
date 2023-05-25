@@ -18,7 +18,7 @@
 <ng-template #noProducts>
   <div class="products-message">
     <span>You have no products, but you can</span>
-    <button mat-button [matMenuTriggerFor]="add">
+    <button mat-button [matMenuTriggerFor]="add" #clickMenuTrigger="matMenuTrigger">
       Add new product
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
@@ -26,6 +26,6 @@
 </ng-template>
 
 <mat-menu #add="matMenu">
-  <app-edit (click)="$event.stopPropagation()"></app-edit>
+  <app-edit (click)="$event.stopPropagation()" (closeMenu)="closeMenu()"></app-edit>
 </mat-menu>
 <app-loader *ngIf="isLoading$ | async"></app-loader>

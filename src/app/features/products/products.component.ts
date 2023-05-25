@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewChild, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { MatMenuTrigger } from '@angular/material/menu';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -25,16 +27,22 @@ import { EditComponent } from '../../shared/edit/edit.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsComponent implements OnInit {
-  private _store = inject(Store)
+  private _store = inject(Store);
 
-  public products$: Observable<IProduct[]> = this._store.select(ProductsFeature.selectProducts)
-  public isLoading$: Observable<boolean> = this._store.select(ProductsFeature.selectIsLoading)
+  public products$: Observable<IProduct[]> = this._store.select(ProductsFeature.selectProducts);
+  public isLoading$: Observable<boolean> = this._store.select(ProductsFeature.selectIsLoading);
+
+  @ViewChild('clickMenuTrigger') clickMenuTrigger!: MatMenuTrigger;
 
   public ngOnInit(): void {
     this._store.dispatch(getAllProducts())
-  }
+  };
 
   public deleteProduct(id: number): void {
     this._store.dispatch(deleteProduct({ data: id }))
-  }
+  };
+
+  public closeMenu() {
+    this.clickMenuTrigger.closeMenu();
+  };
 }

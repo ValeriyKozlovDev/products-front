@@ -1,6 +1,6 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit, inject, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, inject, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { takeUntil, tap } from 'rxjs';
@@ -36,6 +36,7 @@ export class EditComponent implements OnInit {
   public url: string = environment.baseUrl.slice(0, environment.baseUrl.length - 3)
 
   @Input() product!: IProduct;
+  @Output() closeMenu: EventEmitter<any> = new EventEmitter<any>()
 
   public ngOnInit() {
     this._initForm()
@@ -116,5 +117,6 @@ export class EditComponent implements OnInit {
       this.selectedFile = null
       this.imagePreview = ''
     }
+    this.closeMenu.emit()
   }
 }

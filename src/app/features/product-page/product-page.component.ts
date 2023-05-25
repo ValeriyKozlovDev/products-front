@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+
+import { MatMenuTrigger } from '@angular/material/menu';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -33,9 +35,15 @@ export class ProductPageComponent implements OnInit {
   public product$: Observable<IProduct | null> = this._store.select(ProductsFeature.selectProduct);
   public isLoading$: Observable<boolean> = this._store.select(ProductsFeature.selectIsLoading);
 
+  @ViewChild("clickMenuTrigger", { static: false }) clickMenuTrigger!: MatMenuTrigger;
+
   public ngOnInit(): void {
     let route = this._router.url.split('/');
     this._store.dispatch(getFullProduct({ id: +route[route.length - 1] }));
+  };
+
+  public closeMenu() {
+    this.clickMenuTrigger.closeMenu();
   };
 }
 
