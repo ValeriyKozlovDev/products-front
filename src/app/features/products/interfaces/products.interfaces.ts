@@ -5,7 +5,7 @@ export interface IProduct {
   description?: string;
   fullDescription?: string;
   year?: number;
-  image?: string;
+  image?: string | File;
   createdAt?: string;
   updatedAt?: string;
 }

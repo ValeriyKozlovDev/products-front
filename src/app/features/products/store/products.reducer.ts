@@ -18,6 +18,9 @@ import {
   getFullProductFailed,
   getFullProductSuccess,
   resetProducts,
+  uploadPhoto,
+  uploadPhotoFailed,
+  uploadPhotoSuccess,
 } from './products.actions';
 import { IProduct } from '../interfaces/products.interfaces';
 
@@ -28,6 +31,7 @@ export const productsInitialState: IProductsState = {
   products: [],
   product: null,
   error: null,
+  photo: '',
 };
 
 export const ProductsFeature = createFeature({
@@ -45,6 +49,21 @@ export const ProductsFeature = createFeature({
       isLoading: false,
     })),
     on(getFullProductFailed, (state: IProductsState, { error }) => ({
+      ...state,
+      error: error,
+      isLoading: false,
+    })),
+    on(uploadPhoto, (state: IProductsState) => ({
+      ...state,
+      error: null,
+      isLoading: true,
+    })),
+    on(uploadPhotoSuccess, (state: IProductsState, { response }) => ({
+      ...state,
+      photo: response.fileName,
+      isLoading: false,
+    })),
+    on(uploadPhotoFailed, (state: IProductsState, { error }) => ({
       ...state,
       error: error,
       isLoading: false,
@@ -72,6 +91,7 @@ export const ProductsFeature = createFeature({
     on(changeProductDataSuccess, (state: IProductsState, { response }) => ({
       ...state,
       product: response,
+      photo: '',
       isLoading: false,
     })),
     on(changeProductDataFailed, (state: IProductsState, { error }) => ({
@@ -79,7 +99,6 @@ export const ProductsFeature = createFeature({
       error: error,
       isLoading: false,
     })),
-
     on(createProduct, (state: IProductsState) => ({
       ...state,
       error: null,
@@ -88,6 +107,7 @@ export const ProductsFeature = createFeature({
     on(createProductSuccess, (state: IProductsState, { response }) => ({
       ...state,
       products: [...state.products, response],
+      photo: '',
       product: response,
       isLoading: false,
     })),

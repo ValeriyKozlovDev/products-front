@@ -15,6 +15,7 @@ export enum ProfileActions {
   CREATE_PRODUCT_SUCCESS = '[Products] Create product success',
   CREATE_PRODUCT_FAILED = '[Products] Create product failed',
   RESET_PRODUCTS = '[Products] Reset product',
-
-
+  UPLOAD_PHOTO = '[Products] Upload photo',
+  UPLOAD_PHOTO_SUCCESS = '[Products] Upload photo success',
+  UPLOAD_PHOTO_FAILED = '[Products] Upload photo failed',
 }

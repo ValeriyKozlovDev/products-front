@@ -1,3 +1,18 @@
 form {
   padding: 10px
 }
+
+.photo {
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview {
+  height: 100px;
+}
+
+.file-input {
+  display: none;
+}

@@ -5,4 +5,5 @@ export interface IProductsState {
   products: IProduct[];
   product: IProduct | null;
   error: IErrors | null;
+  photo: string
 }
