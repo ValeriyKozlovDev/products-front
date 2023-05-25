@@ -5,9 +5,12 @@
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <div class="row">
-      <div class="col-md-3 product" *ngFor="let product of products">
-        <app-product [product]="product"></app-product>
-        <mat-icon (click)="deleteProduct(product.id!)">delete</mat-icon>
+      <div class="col-md-3" *ngFor="let product of products">
+        <div class="product">
+          <app-product [product]="product"></app-product>
+          <mat-icon (click)="deleteProduct(product.id!)">delete</mat-icon>
+        </div>
+        <div class="margin"></div>
       </div>
     </div>
   </ng-container>

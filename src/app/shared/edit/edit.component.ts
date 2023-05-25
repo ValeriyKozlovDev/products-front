@@ -55,9 +55,11 @@ export class EditComponent implements OnInit {
       this.imagePreview = reader.result
       this._cdr.detectChanges();
     }
+    console.log(this.selectedFile)
     if (this.selectedFile) {
       this.formData.append('image', this.selectedFile, this.selectedFile.name);
       this._store.dispatch(uploadPhoto({ image: this.formData }))
+      this.formData.delete('image')
     }
   }
 
