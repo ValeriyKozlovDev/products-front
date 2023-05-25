@@ -27,7 +27,6 @@ export class EditComponent implements OnInit {
   private _destroy$ = inject(DestroyDirective).destroy$;
   private _store = inject(Store)
   private _cdr = inject(ChangeDetectorRef)
-  @Input() product!: IProduct;
 
   public editForm!: FormGroup;
   public selectedFile: any | null = null
@@ -35,6 +34,8 @@ export class EditComponent implements OnInit {
   public formData = new FormData();
   public photo: string = '';
   public url: string = environment.baseUrl.slice(0, environment.baseUrl.length - 3)
+
+  @Input() product!: IProduct;
 
   public ngOnInit() {
     this._initForm()
@@ -60,7 +61,7 @@ export class EditComponent implements OnInit {
     }
   }
 
-  private _initForm() {
+  private _initForm(): void {
     if (this.product) {
       this.editForm = new FormGroup({
         name: new FormControl(this.product.name, [Validators.required]),
@@ -80,7 +81,7 @@ export class EditComponent implements OnInit {
     }
   }
 
-  public submitForm() {
+  public submitForm(): void {
 
     if (this.editForm.invalid) {
       return

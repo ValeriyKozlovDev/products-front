@@ -38,6 +38,7 @@
         <span *ngIf="!registered" class="text">If you have account please</span>
         <button *ngIf="!registered" mat-raised-button (click)="changeRegistered(true)">Sign In</button>
       </div>
+      <app-loader *ngIf="isLoading$ | async"></app-loader>
     </form>
   </div>
 </div>

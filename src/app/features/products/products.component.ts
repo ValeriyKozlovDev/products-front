@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Store } from '@ngrx/store';
@@ -25,14 +25,16 @@ import { EditComponent } from '../../shared/edit/edit.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsComponent implements OnInit {
-  public products$: Observable<IProduct[]> = this._store.select(ProductsFeature.selectProducts)
-  constructor(private _store: Store) { }
+  private _store = inject(Store)
 
-  public ngOnInit() {
+  public products$: Observable<IProduct[]> = this._store.select(ProductsFeature.selectProducts)
+  public isLoading$: Observable<boolean> = this._store.select(ProductsFeature.selectIsLoading)
+
+  public ngOnInit(): void {
     this._store.dispatch(getAllProducts())
   }
 
-  public deleteProduct(id: number) {
+  public deleteProduct(id: number): void {
     this._store.dispatch(deleteProduct({ data: id }))
   }
 }

@@ -25,3 +25,4 @@
 <mat-menu #add="matMenu">
   <app-edit (click)="$event.stopPropagation()"></app-edit>
 </mat-menu>
+<app-loader *ngIf="isLoading$ | async"></app-loader>

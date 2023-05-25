@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -25,16 +25,17 @@ import { environment } from '../../../environments/environment';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductPageComponent implements OnInit {
-  public product$: Observable<IProduct | null> = this._store.select(ProductsFeature.selectProduct)
-  public url: string = environment.baseUrl.slice(0, environment.baseUrl.length - 3)
-  constructor(
-    private _store: Store,
-    private _router: Router,
-  ) { }
+  private _store = inject(Store)
+  private _router = inject(Router)
 
-  public ngOnInit() {
-    let route = this._router.url.split('/')
-    this._store.dispatch(getFullProduct({ id: +route[route.length - 1] }))
-  }
+  public url: string = environment.baseUrl.slice(0, environment.baseUrl.length - 3);
+
+  public product$: Observable<IProduct | null> = this._store.select(ProductsFeature.selectProduct);
+  public isLoading$: Observable<boolean> = this._store.select(ProductsFeature.selectIsLoading);
+
+  public ngOnInit(): void {
+    let route = this._router.url.split('/');
+    this._store.dispatch(getFullProduct({ id: +route[route.length - 1] }));
+  };
 }
 

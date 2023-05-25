@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     RouterModule,
     NgOptimizedImage,
-    MatCardModule
+    MatCardModule,
+    LoaderComponent,
   ],
   exports: [
     MatToolbarModule,
@@ -46,7 +48,8 @@ import { MatCardModule } from '@angular/material/card';
     FormsModule,
     RouterModule,
     NgOptimizedImage,
-    MatCardModule
+    MatCardModule,
+    LoaderComponent,
   ]
 })
 export class SharedModule { }

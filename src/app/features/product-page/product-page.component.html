@@ -33,3 +33,4 @@
     <app-edit (click)="$event.stopPropagation()" [product]="product"></app-edit>
   </mat-menu>
 </ng-container>
+<app-loader *ngIf="isLoading$ | async"></app-loader>
