@@ -9,7 +9,9 @@ import {
   ChangeDetectorRef,
   Output,
   EventEmitter,
-  forwardRef
+  forwardRef,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 
 import { Store } from '@ngrx/store';
@@ -54,6 +56,7 @@ export class EditComponent implements OnInit {
 
   @Input() product!: IProduct;
   @Output() closeMenu: EventEmitter<any> = new EventEmitter<any>()
+  @ViewChild('input', { static: false }) input!: ElementRef;
 
   public ngOnInit() {
     this._initForm()
@@ -126,12 +129,13 @@ export class EditComponent implements OnInit {
         description: this.editForm.value.description,
         price: this.editForm.value.price,
         year: this.editForm.value.year,
-        image: this.photo
-      }
-      this._store.dispatch(createProduct({ data: newProduct }))
-      this.editForm.reset()
-      this.selectedFile = null
-      this.imagePreview = ''
+        image: this.photo,
+      };
+      this._store.dispatch(createProduct({ data: newProduct }));
+      this.editForm.reset();
+      this.selectedFile = null;
+      this.imagePreview = '';
+      this.input.nativeElement.value = ""
     }
     this.closeMenu.emit()
   }
