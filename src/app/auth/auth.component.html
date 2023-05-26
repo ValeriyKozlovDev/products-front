@@ -13,18 +13,33 @@
           </mat-card-content>
         </mat-card>
       </div>
-      <app-text-input [value]="formGroup.value.email" [label]="'Email'" formControlName="email"></app-text-input>
+      <app-text-input [value]="formGroup.value.email" [label]="'Email'" formControlName="email">
+        <ng-container *ngIf="(formGroup.get('email')!.dirty || formGroup.get('email')!.touched)">
+          <mat-error *ngIf="formGroup.get('email')!.errors?.['required']">Email is required.</mat-error>
+          <mat-error *ngIf="formGroup.get('email')!.errors?.['email']">Email must be valid.</mat-error>
+        </ng-container>
+
+      </app-text-input>
 
       <hr *ngIf="!registered">
       <app-text-input *ngIf="!registered" [value]="formGroup.value.name" [label]="'Name'"
         formControlName="name"></app-text-input>
 
       <hr>
+
       <app-text-input [value]="formGroup.value.password" [label]="'Password'" [type]="'password'"
-        formControlName="password"></app-text-input>
-      <mat-error *ngIf="formGroup.hasError('minLength', 'password')">
-        Password must not be shorter then <strong>6</strong> symbols
-      </mat-error>
+        formControlName="password">
+
+        <ng-container *ngIf="(formGroup.get('password')!.dirty || formGroup.get('password')!.touched)">
+          <mat-error *ngIf="formGroup.get('password')!.errors?.['required']">Password is required.</mat-error>
+          <mat-error
+            *ngIf="formGroup.get('password')!.value.length < 6 && formGroup.get('password')!.value.length > 0">Password
+            must not be shorter then
+            <strong>6</strong> symbols, now it is
+            <strong>{{formGroup.get('password')!.value.length}}</strong></mat-error>
+        </ng-container>
+
+      </app-text-input>
 
       <div class="login-form__input-control">
         <button *ngIf="registered" mat-raised-button color="primary" [disabled]="formGroup.invalid || submitted"

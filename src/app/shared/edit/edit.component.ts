@@ -1,6 +1,16 @@
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnInit, inject, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  inject,
+  ChangeDetectorRef,
+  Output,
+  EventEmitter,
+  forwardRef
+} from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import { takeUntil, tap } from 'rxjs';
@@ -19,6 +29,13 @@ import { environment } from '../../../environments/environment';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
   imports: [SharedModule, CommonModule, TextInputComponent],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TextInputComponent),
+      multi: true
+    }
+  ],
   hostDirectives: [DestroyDirective],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -56,7 +73,6 @@ export class EditComponent implements OnInit {
       this.imagePreview = reader.result
       this._cdr.detectChanges();
     }
-    console.log(this.selectedFile)
     if (this.selectedFile) {
       this.formData.append('image', this.selectedFile, this.selectedFile.name);
       this._store.dispatch(uploadPhoto({ image: this.formData }))
@@ -69,9 +85,9 @@ export class EditComponent implements OnInit {
       this.editForm = new FormGroup({
         name: new FormControl(this.product.name, [Validators.required]),
         description: new FormControl(this.product.description),
-        fullDescription: new FormControl(this.product.description),
+        fullDescription: new FormControl(this.product.fullDescription),
         price: new FormControl(this.product.price, [Validators.required]),
-        year: new FormControl(this.product.price, [Validators.required]),
+        year: new FormControl(this.product.year, [Validators.required]),
       });
     } else {
       this.editForm = new FormGroup({

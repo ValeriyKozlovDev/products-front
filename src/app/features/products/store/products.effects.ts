@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { mergeMap, map, catchError, of } from 'rxjs';
+import { mergeMap, map, catchError, of, tap } from 'rxjs';
 
 import { ProductsService } from '../services/products.service';
 import {
@@ -25,6 +25,7 @@ import {
   uploadPhotoFailed,
   uploadPhotoSuccess
 } from './products.actions';
+import { ResponseHandlerService } from '../../../shared/services/response-handler.service';
 
 export const getAllProducts$ = createEffect(
   (
@@ -167,4 +168,160 @@ export const changeProductData$ = createEffect(
     ),
 
   { functional: true },
+)
+
+export const handleGetAllProductsSuccess$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(getAllProductsSuccess),
+      tap(() => responseHandlerService.response({ type: 'success', content: 'Get products success' }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleGetAllProductsFailed$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(getAllProductsFailed),
+      tap(() => responseHandlerService.response({ type: 'error', content: 'Get products failed' }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleGetProductSuccess$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(getFullProductSuccess),
+      tap(({ response }) => responseHandlerService.response({ type: 'success', content: `Get product ${response.name} success` }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleGetProductFailed$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(getFullProductFailed),
+      tap(() => responseHandlerService.response({ type: 'error', content: 'Get product failed' }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleCreateProductSuccess$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(createProductSuccess),
+      tap(({ response }) => responseHandlerService.response({ type: 'success', content: `Create product ${response.name} success` }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleCreateProductFailed$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(createProductFailed),
+      tap(() => responseHandlerService.response({ type: 'error', content: 'Create product failed' }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleUpdateProductSuccess$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(changeProductDataSuccess),
+      tap(({ response }) => responseHandlerService.response({ type: 'success', content: `Update product ${response.name} success` }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleUpdateProductFailed$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(changeProductDataFailed),
+      tap(() => responseHandlerService.response({ type: 'error', content: 'Update product failed' }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleUploadImageSuccess$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(uploadPhotoSuccess),
+      tap(() => responseHandlerService.response({ type: 'success', content: `Upload image success` }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleUploadImageFailed$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(uploadPhotoFailed),
+      tap(() => responseHandlerService.response({ type: 'error', content: 'Upload image failed' }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleDeleteProductSuccess$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(deleteProductSuccess),
+      tap(() => responseHandlerService.response({ type: 'success', content: `Delete product success` }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleDeleteProductFailed$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(deleteProductFailed),
+      tap(() => responseHandlerService.response({ type: 'error', content: 'Delete product failed' }))
+    ),
+
+  { functional: true, dispatch: false },
 )

@@ -34,7 +34,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
   providers: [
     AuthGuard,
     INTERCEPTOR_PROVIDER,
-    AuthService
+    AuthService,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

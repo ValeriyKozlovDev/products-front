@@ -21,7 +21,7 @@ export class ProductsService {
 
   public getProduct(id: number): Observable<IProduct> {
     const url = `${environment.baseUrl}/products/${id}`;
-    return this._http.get<IProduct>(url);
+    return this._http.get<IProduct>(url)
   }
 
   public changeProductData(product: IProduct): Observable<IProduct> {

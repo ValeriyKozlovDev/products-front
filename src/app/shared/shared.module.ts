@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -9,13 +10,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatMenuModule, MatMenuTrigger } from '@angular/material/menu';
-import { RouterModule } from '@angular/router';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
+
 import { LoaderComponent } from './loader/loader.component';
+import { ErrorHandlingDirective } from './directives/error-handling.directive';
 
 @NgModule({
   declarations: [
+
+    ErrorHandlingDirective
   ],
   imports: [
     CommonModule,
@@ -50,6 +54,7 @@ import { LoaderComponent } from './loader/loader.component';
     NgOptimizedImage,
     MatCardModule,
     LoaderComponent,
+    ErrorHandlingDirective,
   ]
 })
 export class SharedModule { }

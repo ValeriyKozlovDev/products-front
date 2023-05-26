@@ -1,21 +1,37 @@
 <form [formGroup]="editForm" (ngSubmit)="submitForm()">
-  <app-text-input [value]="editForm.value.name" [label]="'Name'" formControlName="name"></app-text-input>
-  <app-text-input [value]="editForm.value.description" [label]="'Short description'"
-    formControlName="description"></app-text-input>
+  <app-text-input [value]="editForm.value.name" [label]="'Name'" formControlName="name" [appErrorHandling]="'required'">
+    <ng-container *ngIf="(editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+      <mat-error *ngIf="editForm.get('name')!.errors?.['required']">Name is required.</mat-error>
+    </ng-container>
+  </app-text-input>
+
+  <app-text-input [value]="editForm.value.description" [label]="'Short description'" formControlName="description">
+  </app-text-input>
+
   <div class="photo">
     <img *ngIf="imagePreview" (click)="input.click()" [src]="imagePreview" alt="" class="preview">
     <img *ngIf="product && !imagePreview" (click)="input.click()" [src]="url + product.image" alt="" class="preview">
-
     <button mat-button *ngIf="!imagePreview && !product" (click)="input.click()">
       Upload image
     </button>
-
     <input #input class="file-input" type="file" (change)="onFileChanged($event)">
-
   </div>
-  <app-text-input [value]="editForm.value.price" [label]="'Price'" formControlName="price"></app-text-input>
+
+  <app-text-input [value]="editForm.value.price" [label]="'Price'" formControlName="price"
+    [appErrorHandling]="'required'">
+    <ng-container *ngIf="(editForm.get('price')!.dirty || editForm.get('price')!.touched)">
+      <mat-error *ngIf="editForm.get('price')!.errors?.['required']">Price is required.</mat-error>
+    </ng-container>
+  </app-text-input>
+
   <app-text-input [value]="editForm.value.fullDescription" [label]="'Full description'"
     formControlName="fullDescription"></app-text-input>
-  <app-text-input [value]="editForm.value.year" [label]="'Year'" formControlName="year"></app-text-input>
+
+  <app-text-input [value]="editForm.value.year" [label]="'Year'" formControlName="year" [appErrorHandling]="'required'">
+    <ng-container *ngIf="(editForm.get('year')!.dirty || editForm.get('year')!.touched)">
+      <mat-error *ngIf="editForm.get('year')!.errors?.['required']">Year is required.</mat-error>
+    </ng-container>
+  </app-text-input>
+
   <button mat-raised-button color="primary" [disabled]="editForm.invalid">Submit changes</button>
 </form>
