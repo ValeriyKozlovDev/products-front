@@ -13,6 +13,7 @@ import { IProduct } from '../products/interfaces/products.interfaces';
 import { ProductsFeature } from '../products/store/products.reducer';
 import { getFullProduct } from '../products/store/products.actions';
 import { environment } from '../../../environments/environment';
+import { TextInputComponent } from 'src/app/shared/text-input/text-input.component';
 
 @Component({
   standalone: true,
@@ -23,6 +24,9 @@ import { environment } from '../../../environments/environment';
     CommonModule,
     SharedModule,
     EditComponent,
+  ],
+  providers: [
+    TextInputComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

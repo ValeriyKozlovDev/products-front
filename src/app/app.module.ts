@@ -18,6 +18,8 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
 import { AuthEffects } from './auth/store/index';
 import { ProductsEffects } from './features/products/store/index';
+import { ErrorHandlingDirective } from './shared/directives/error-handling.directive';
+import { ERROR_HANDLING_DIRECTIVE } from './shared/error-handling.token';
 
 
 const INTERCEPTOR_PROVIDER: Provider = {
@@ -49,6 +51,7 @@ const INTERCEPTOR_PROVIDER: Provider = {
     AuthService,
     AuthGuard,
     INTERCEPTOR_PROVIDER,
+    { provide: ERROR_HANDLING_DIRECTIVE, useExisting: ErrorHandlingDirective },
   ],
   bootstrap: [AppComponent]
 })

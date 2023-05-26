@@ -11,6 +11,7 @@ import { login, loginOrRegisterFailure, loginOrRegisterSuccess, logout, register
 import { AuthService } from "../services/auth.service";
 import { IUser } from './interfaces';
 import { resetProducts } from '../../features/products/store/products.actions';
+import { ResponseHandlerService } from 'src/app/shared/services/response-handler.service';
 
 export const auth$ = createEffect(
   (
@@ -79,3 +80,30 @@ export const logout$ = createEffect(
     ),
   { functional: true, dispatch: false },
 );
+
+
+export const handleLoginSuccess$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(loginOrRegisterSuccess),
+      tap(() => responseHandlerService.response({ type: 'success', content: `Login success` }))
+    ),
+
+  { functional: true, dispatch: false },
+)
+
+export const handleLoginFailed$ = createEffect(
+  (
+    actions$ = inject(Actions),
+    responseHandlerService: ResponseHandlerService = inject(ResponseHandlerService)
+  ) =>
+    actions$.pipe(
+      ofType(loginOrRegisterFailure),
+      tap(() => responseHandlerService.response({ type: 'error', content: 'Login failed' }))
+    ),
+
+  { functional: true, dispatch: false },
+)

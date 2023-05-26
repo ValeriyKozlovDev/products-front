@@ -10,5 +10,40 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.popup-success {
+  position: fixed;
+  text-align: center;
+  padding-top: 10px;
+  z-index: 1000;
+  top: 15%;
+  left: 80%;
+  width: 300px;
+  min-height: 50px;
+  border-radius: 12px;
+  background-color: rgb(51, 255, 0);
+}
+
+.popup-error {
+  position: fixed;
+  text-align: center;
+  padding-top: 10px;
+  z-index: 1000;
+  top: 15%;
+  left: 80%;
+  width: 300px;
+  min-height: 50px;
+  border-radius: 12px;
+  color: white;
+  background-color: rgb(255, 72, 0);
+}

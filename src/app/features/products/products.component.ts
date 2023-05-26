@@ -12,6 +12,7 @@ import { IProduct } from './interfaces/products.interfaces';
 import { SharedModule } from '../../shared/shared.module';
 import { ProductComponent } from './components/product/product.component';
 import { EditComponent } from '../../shared/edit/edit.component';
+import { TextInputComponent } from '../../shared/text-input/text-input.component';
 
 @Component({
   standalone: true,
@@ -22,7 +23,10 @@ import { EditComponent } from '../../shared/edit/edit.component';
     CommonModule,
     SharedModule,
     ProductComponent,
-    EditComponent,
+    EditComponent
+  ],
+  providers: [
+    TextInputComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -32,7 +36,7 @@ export class ProductsComponent implements OnInit {
   public products$: Observable<IProduct[]> = this._store.select(ProductsFeature.selectProducts);
   public isLoading$: Observable<boolean> = this._store.select(ProductsFeature.selectIsLoading);
 
-  @ViewChild('clickMenuTrigger') clickMenuTrigger!: MatMenuTrigger;
+  @ViewChild("clickMenuTrigger", { static: false }) clickMenuTrigger!: MatMenuTrigger;
 
   public ngOnInit(): void {
     this._store.dispatch(getAllProducts())
