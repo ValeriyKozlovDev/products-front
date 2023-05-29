@@ -1,13 +1,15 @@
 <ng-container *ngIf="product$ | async as product">
 
   <div class="container">
-    <button mat-button [matMenuTriggerFor]="edit" #clickMenuTrigger="matMenuTrigger">
+    <button mat-button [matMenuTriggerFor]="edit" #clickMenuTrigger="matMenuTrigger"
+      matTooltip="Click to open edit menu">
       Edit product
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <div class="item row">
       <div class="col-md-5 item__img">
-        <img width="200" height="400" [src]="url + product.image" alt={{product.name}}>
+        <img width="200" height="400" [src]="product.image ? url + product.image : url + 'No_Image_Available.jpg'"
+          alt={{product.name}}>
       </div>
       <div class="col-md-7 item__info">
         <h3>{{product.name}}</h3>

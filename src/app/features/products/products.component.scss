@@ -23,13 +23,92 @@
 .product {
   display: flex;
   justify-content: center;
-  padding: 30px 10px 30px 30px;
+  align-items: center;
+  padding: 30px;
   margin-bottom: 10px;
   border-radius: 12px;
-
   background-color: azure;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    border-radius: 8px;
+    background-color: rgb(234, 255, 255);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
 }
 
 .margin {
   width: 10px;
+}
+
+.filters {
+  padding: 10px;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 280px;
+}
+
+.slider {
+  width: 230px;
+}
+
+.price-inputs {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  >input {
+    width: 70px;
+    margin: 15px;
+    border-radius: 10px;
+    border: 1px solid rgb(117, 227, 241);
+  }
+}
+
+.price-buttons {
+
+  >button {
+    margin: 0 27px;
+  }
+}
+
+.filters-message {
+  margin: 0 auto;
+  width: 210px;
+  margin-bottom: 10px;
+  color: rgb(26, 49, 255);
+
+  >div {
+    text-align: center;
+  }
+}
+
+.sorting {
+  padding: 5px;
+}
+
+.selected {
+  border: 1px solid rgb(175, 234, 252);
+  background-color: rgb(240, 253, 255);
+  border-radius: 8px;
+}
+
+.options-buttons {
+  width: 600px;
+  margin: 10px 0;
+  border: 1px solid black;
+  border-radius: 12px;
+
+  >button {
+    width: 50%;
+  }
 }

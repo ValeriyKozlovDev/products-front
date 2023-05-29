@@ -12,9 +12,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { LoaderComponent } from './loader/loader.component';
 import { ErrorHandlingDirective } from './directives/error-handling.directive';
+import { SortingPipe } from './pipes/sorting.pipe';
+import { PriceFilerPipe } from './pipes/price-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,10 @@ import { ErrorHandlingDirective } from './directives/error-handling.directive';
     NgOptimizedImage,
     MatCardModule,
     LoaderComponent,
+    MatTooltipModule,
+    SortingPipe,
+    MatSliderModule,
+    PriceFilerPipe,
   ],
   exports: [
     MatToolbarModule,
@@ -55,6 +63,10 @@ import { ErrorHandlingDirective } from './directives/error-handling.directive';
     MatCardModule,
     LoaderComponent,
     ErrorHandlingDirective,
+    MatTooltipModule,
+    SortingPipe,
+    MatSliderModule,
+    PriceFilerPipe,
   ]
 })
 export class SharedModule { }

@@ -17,3 +17,8 @@ export interface IErrors {
 export interface IPhoto {
   fileName: string
 }
+
+export interface IPriceFilter {
+  min: number;
+  max: number;
+}
