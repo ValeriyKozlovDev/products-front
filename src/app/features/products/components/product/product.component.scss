@@ -1,3 +1,45 @@
-.product_img {
-  width: 200px
+.product__img {
+  width: 200px;
+}
+
+.product__img-container {
+  width: 200px;
+}
+
+.product__info {
+  margin-top: 10px;
+}
+
+.product__name {
+
+  >h3 {
+    margin-bottom: 10px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 26px;
+    color: #151515;
+  }
+}
+
+.product__description {
+
+  >h3 {
+    margin-bottom: 5px;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 23px;
+    color: #151515;
+  }
+}
+
+.product__price {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: #6A983C;
 }
