@@ -54,6 +54,8 @@ export class EditComponent implements OnInit {
   public photo: string = '';
   public url: string = environment.baseUrl.slice(0, environment.baseUrl.length - 3)
 
+  public isLoading$ = this._store.select(ProductsFeature.selectIsLoading)
+
   @Input() product!: IProduct;
   @Output() closeMenu: EventEmitter<any> = new EventEmitter<any>()
   @ViewChild('input', { static: false }) input!: ElementRef;
