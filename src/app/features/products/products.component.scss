@@ -1,5 +1,5 @@
 .products-container {
-  max-width: 1200px;
+  max-width: 80%;
   margin: 0 auto;
   justify-content: center;
 }
@@ -20,14 +20,22 @@
   }
 }
 
+.products {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .product {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 10px;
   margin-bottom: 10px;
   border-radius: 12px;
   background-color: azure;
+  width: 100%;
+  max-width: 250px;
   cursor: pointer;
   transition: transform 0.3s ease;
 
@@ -110,5 +118,29 @@
 
   >button {
     width: 50%;
+  }
+}
+
+@media (max-width: 1400px) {
+  .product {
+    padding: 10px;
+  }
+}
+
+// @media(max-width: 1280px) {
+//   .product {
+//     width: 200px
+//   }
+// }
+
+// @media(max-width: 1080px) {
+//   .product {
+//     width: 180px
+//   }
+// }
+
+@media (max-width: 768px) {
+  .options-buttons {
+    width: 100%;
   }
 }

@@ -7,24 +7,24 @@
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <div class="item row">
-      <div class="col-md-5 item__img">
-        <img width="200" height="400" [src]="product.image ? url + product.image : url + 'No_Image_Available.jpg'"
+      <div class="col-sm-7 col-md-7 item__img">
+        <img width="200" [src]="product.image ? url + product.image : url + 'No_Image_Available.jpg'"
           alt={{product.name}}>
       </div>
-      <div class="col-md-7 item__info">
+      <div class="col-sm-5 col-md-5 item__info">
         <h3>{{product.name}}</h3>
         <div class="description">{{product.fullDescription}}</div>
         <div class="row">
-          <p class="col-6 col-sm-4 col-md-2 product-info__option-name">Description</p>
-          <p class="col-6 col-sm-6 col-md-8 product-info__info-text">{{product.description}}</p>
+          <p class="col-3 col-sm-4 col-md-3 product-info__option-name">Description:</p>
+          <p class="col-9 col-sm-8 col-md-9 product-info__info-text">{{product.description}}</p>
         </div>
         <div class="row">
-          <p class="col-6 col-sm-4 col-md-2 product-info__option-name">Year:</p>
-          <p class="col-6 col-sm-6 col-md-10 product-info__info-text">{{product.year}}</p>
+          <p class="col-3 col-sm-4 col-md-3 product-info__option-name">Year:</p>
+          <p class="col-9 col-sm-8 col-md-9 product-info__info-text">{{product.year}}</p>
         </div>
         <div class="buy row">
-          <div class="col-6 col-sm-6 col-md-3 offset-md-1 buy__price">{{product.price}} USD</div>
-          <div class="col-6 col-sm-6 col-md-4 offset-md-2">
+          <div class="col-8 col-sm-8 col-md-5 buy__price">{{product.price}} USD</div>
+          <div class="col-4 col-sm-4 col-md-6 offset-md-1">
             <button mat-raised-button color="primary">Buy</button>
           </div>
         </div>

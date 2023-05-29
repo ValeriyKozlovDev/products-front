@@ -33,5 +33,7 @@
     </ng-container>
   </app-text-input>
 
-  <button mat-raised-button color="primary" [disabled]="editForm.invalid">Submit changes</button>
+  <button *ngIf="!(isLoading$ | async)" mat-raised-button color="primary" [disabled]="editForm.invalid">Submit
+    changes</button>
+  <button *ngIf="(isLoading$ | async)" mat-raised-button color="primary" [disabled]="true">Loading...</button>
 </form>

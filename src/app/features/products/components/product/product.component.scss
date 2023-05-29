@@ -1,13 +1,23 @@
-.product__img {
-  width: 200px;
+.product {
+  padding: 5px;
+  min-width: 180px;
 }
 
 .product__img-container {
-  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.product__img {
+  object-fit: cover;
+  width: 100%;
 }
 
 .product__info {
   margin-top: 10px;
+  width: 100%;
 }
 
 .product__name {
@@ -23,6 +33,7 @@
 }
 
 .product__description {
+  width: 100%;
 
   >h3 {
     margin-bottom: 5px;

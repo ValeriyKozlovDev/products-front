@@ -18,7 +18,9 @@
       </button>
     </div>
     <div class="row">
-      <div class="col-md-3 products" *ngFor="let product of (products | sortingProducts:sorting | priceFiler:filters)">
+      <div class="col-6 col-sm-6 col-md-4 col-lg-3 products"
+        *ngFor="let product of (products | sortingProducts:sorting | priceFiler:filters)"
+        [routerLink]="['../product/' + product.id]">
         <mat-card class="product">
           <app-product [product]="product"></app-product>
           <mat-icon (click)="deleteProduct(product.id!)" matTooltip="Delete">delete</mat-icon>
